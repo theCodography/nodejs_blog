@@ -2,9 +2,11 @@
   "name": "blog",
   "version": "1.0.0",
   "description": "my Blog",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "nodemon --inspect index.js",
+    "start": "nodemon --inspect src/index.js",
+    "compile:sass": "node-sass src/resources/scss/app.scss src/public/css/app.css",
+    "watch:sass": "nodemon -e scss -x npm run compile:sass",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,10 +24,12 @@
   },
   "homepage": "https://github.com/theCodography/nodejs_blog#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "express-handlebars": "^5.2.0"
   },
   "devDependencies": {
     "morgan": "^1.10.0",
+    "node-sass": "^5.0.0",
     "nodemon": "^2.0.6"
   }
 }
