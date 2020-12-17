@@ -1,5 +1,8 @@
 const Blog = require('../models/Blog');
-const { multipleMongooseToObject } = require('../../util/mongoose');
+const {
+    multipleMongooseToObject,
+    mongooseToObject,
+} = require('../../util/mongoose');
 class NewsController {
     //* [GET] -> /news
     index(req, res, next) {
@@ -12,8 +15,15 @@ class NewsController {
             .catch(next);
     }
     //* [GET] -> /news/:slug
-    show(req, res) {
-        res.send('NEWS DETAILS!');
+    show(req, res, next) {
+        Blog.find({})
+            .then((blogs) => {
+                // res.json('news', {
+                //     blogs: mongooseToObject(blogs),
+                // });
+                res.json(mongooseToObject(blogs));
+            })
+            .catch(next);
     }
 }
 
