@@ -16,6 +16,22 @@ class BlogController {
             })
             .catch(next);
     }
+
+    //* [GET] -> /blogs/create
+    create(req, res, next) {
+        res.render('blogs/create');
+    }
+
+    //* [POST] -> /blogs/store
+    store(req, res, next) {
+        const formData = req.body;
+        const blog = new Blog(formData);
+        blog.save()
+            .then(() => {
+                res.redirect('/');
+            })
+            .catch((error) => {});
+    }
 }
 
 module.exports = new BlogController();
